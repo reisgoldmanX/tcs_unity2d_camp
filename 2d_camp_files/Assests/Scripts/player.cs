@@ -12,9 +12,18 @@ public class player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        canJump = true;
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            canJump = true;
+        }
         // Use tags to achieve the same thing for coins
 
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // kill
+            player_physics.AddForce(Vector2.up * 999, ForceMode2D.Impulse);
+            
+        }
 
 
     }
