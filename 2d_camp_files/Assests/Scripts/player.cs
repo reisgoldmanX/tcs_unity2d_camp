@@ -35,7 +35,7 @@ public class player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("slow"))
         {
-            coin_text.text = "Coin: " + coin_count.ToString();
+            // to be implmented
         }
 
 
@@ -44,7 +44,7 @@ public class player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         canJump = false;
-        
+        coin_text.text = "Coin: " + coin_count.ToString();
     }
     void start()
     {
