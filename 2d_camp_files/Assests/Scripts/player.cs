@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class player : MonoBehaviour
 {
-    int jump_power = 35;
+    private int jump_power = 35;
     public Rigidbody2D player_physics;
     public int coin_count = 0;
     private bool canJump;
-
+    public TextMeshProGUI coin_text;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -22,7 +23,19 @@ public class player : MonoBehaviour
         {
             // kill
             player_physics.AddForce(Vector2.up * 999, ForceMode2D.Impulse);
+            coin_count = 0;
             
+        }
+        if (collision.gameObject.CompareTagI("coin"))
+        {
+            coin_count++;
+            Destroy(collision.gameObject);
+            
+        }
+
+        if (collision.gameObject.CompareTag("slow"))
+        {
+            coin_text.text = "Coin: " + coin_count.ToString();
         }
 
 
@@ -30,9 +43,9 @@ public class player : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        canJump = false;   
+        canJump = false;
+        
     }
-
     void start()
     {
 
